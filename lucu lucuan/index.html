@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CEY</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h1 {
+        position: fixed;
+        top: 35%;
+        width: 100%;
+        text-align: center;
+        color: rgb(134, 77, 77);
+        font-size: 3em;
+        text-shadow: 0 0 10px rgba(0,0,0,0.2);
+        z-index: 2;
+    }
+
+    button {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 24px;
+        font-size: 16px;
+        border: none;
+        border-radius: 25px;
+        background: #ff6b81;
+        color: pink;
+        cursor: pointer;
+        z-index: 2;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+        background: #ff4757;
+    }
+
+    .word {
+        position: absolute;
+        top: -50px;
+        color: rgb(126, 47, 60);
+        font-size: 20px;
+        animation: fall linear forwards;
+        text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<h1>semangat ya,meskipun ipk ga sesuai</h1>
+
+<button onclick="playMusic()">▶ Play Song</button>
+
+<audio id="bgm" loop>
+    <source src="NIKI - lowkey (Lyrics) - Dan Music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    function playMusic() {
+        document.getElementById("bgm").play();
+    }
+
+    const words = [
+        "Pelan-pelan, kamu ga sendirian 🤝",
+        "Versi terbaikmu belum rilis ✨",
+        "It’s okay, you’re doing your best 💙",
+        "INI MASIH PANJANG KOK PERJALANANNYA",
+        "You’re stronger than you think ✨",
+        "jujur lu tengil, tapi gua suka lu tengil",
+        "thank you for this month🌕",
+        "Always proud of you 💫",
+        "I hope you have a happy day🎀"
+    ];
+
+    function createWord() {
+        const word = document.createElement("div");
+        word.classList.add("word");
+        word.innerText = words[Math.floor(Math.random() * words.length)];
+
+        word.style.left = Math.random() * window.innerWidth + "px";
+        word.style.animationDuration = (3 + Math.random() * 3) + "s";
+        word.style.fontSize = (16 + Math.random() * 14) + "px";
+
+        document.body.appendChild(word);
+
+        setTimeout(() => {
+            word.remove();
+        }, 6000);
+    }
+
+    setInterval(createWord, 400);
+</script>
+
+</body>
+</html>
